@@ -1,3 +1,5 @@
+require './lib/artist'
+
 class Photograph
   attr_reader :id,
               :name,

@@ -81,4 +81,19 @@ class Curator
       range.include?(photo.year.to_i)
     end
   end
+
+  def calculate_artist_age_by_photo(photo)
+    found = @artists.find do |artist|
+      artist.id == photo.artist_id
+    end
+    age = photo.year.to_i - found.born.to_i
+  end
+
+  def artists_photographs_by_age(artist)
+    grouped_by_age = {}
+    @photographs.each do |photo|
+      grouped_by_age[calculate_artist_age_by_photo(photo)] = photo.name
+    end
+    return grouped_by_age.to_a.reverse.to_h
+  end
 end
