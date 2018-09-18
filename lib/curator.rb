@@ -1,7 +1,3 @@
-require './lib/file_io'
-require './lib/photograph'
-require './lib/artist'
-
 class Curator
   attr_reader :artists,
               :photographs

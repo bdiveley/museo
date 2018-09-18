@@ -33,5 +33,4 @@ class ArtistTest < Minitest::Test
     assert_equal "1984", artist.died
     assert_equal "United States", artist.country
   end
-
 end

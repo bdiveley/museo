@@ -1,5 +1,3 @@
-require './lib/artist'
-
 class Photograph
   attr_reader :id,
               :name,
@@ -12,5 +10,4 @@ class Photograph
     @artist_id = photo_hash[:artist_id]
     @year = photo_hash[:year]
   end
-
 end

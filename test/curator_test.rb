@@ -1,6 +1,9 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/curator'
+require './lib/artist'
+require './lib/photograph'
+require './lib/file_io'
 require 'pry'
 
 class CuratorTest < Minitest::Test
@@ -167,7 +170,6 @@ class CuratorTest < Minitest::Test
     curator.add_artist(artist_3)
     diane_arbus = curator.find_artist_by_id("3")
 
-
     assert_equal [twins, child], curator.find_photographs_by_artist(diane_arbus)
   end
 
@@ -227,7 +229,6 @@ class CuratorTest < Minitest::Test
     curator.add_artist(artist_2)
     curator.add_artist(artist_3)
     diane_arbus = curator.find_artist_by_id("3")
-
 
     assert_equal [diane_arbus], curator.artists_with_multiple_photographs
     assert_equal 1, curator.artists_with_multiple_photographs.length
