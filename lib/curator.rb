@@ -1,3 +1,5 @@
+require './lib/file_io'
+
 class Curator
   attr_reader :artists,
               :photographs
@@ -54,12 +56,19 @@ class Curator
     artists_from_location.each do |artist|
       photos << find_photographs_by_artist(artist)
     end
-    return photos.flatten 
+    return photos.flatten
   end
 
   def artists_from(location)
     @artists.find_all do |artist|
       artist.country == location
+    end
+  end
+
+  def load_photographs(file)
+    photo_data = FileIO.load_photographs(file)
+    photo_data.each do |photo_hash|
+      @photographs << Photograph.new(photo_hash)
     end
   end
 end

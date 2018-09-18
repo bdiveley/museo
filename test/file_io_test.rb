@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/file_io'
+require 'pry'
 
 class FileIOTest < Minitest::Test
   def test_it_can_load_artists
