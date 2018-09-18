@@ -369,4 +369,12 @@ class CuratorTest < Minitest::Test
     assert_instance_of Artist, curator.artists[0]
   end
 
+  def test_it_can_find_photos_taken_in_range
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+
+    assert_equal 2, curator.photographs_taken_between(1950..1965).length
+    assert_instance_of Photograph, curator.photographs_taken_between(1950..1965)[0]
+  end
+
 end
