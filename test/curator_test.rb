@@ -1,8 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/curator'
-require './lib/photograph'
-require './lib/artist'
 require 'pry'
 
 class CuratorTest < Minitest::Test
@@ -361,6 +359,14 @@ class CuratorTest < Minitest::Test
 
     assert_equal 4, curator.photographs.length
     assert_instance_of Photograph, curator.photographs[0]
+  end
+
+  def test_it_can_load_artists_from_csv
+    curator = Curator.new
+    curator.load_artists('./data/artists.csv')
+
+    assert_equal 6, curator.artists.length
+    assert_instance_of Artist, curator.artists[0]
   end
 
 end

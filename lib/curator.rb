@@ -1,4 +1,6 @@
 require './lib/file_io'
+require './lib/photograph'
+require './lib/artist'
 
 class Curator
   attr_reader :artists,
@@ -40,14 +42,9 @@ class Curator
   end
 
   def artists_with_multiple_photographs
-    multiples = []
-    @artists.each do |artist|
-      number = @photographs.count do |photo|
-        photo.artist_id == artist.id
-      end
-      multiples << artist if number > 1
+    @artists.find_all do |artist|
+      find_photographs_by_artist(artist).count > 1
     end
-    return multiples
   end
 
   def photographs_taken_by_artists_from(location)
@@ -68,7 +65,14 @@ class Curator
   def load_photographs(file)
     photo_data = FileIO.load_photographs(file)
     photo_data.each do |photo_hash|
-      @photographs << Photograph.new(photo_hash)
+      add_photograph(photo_hash)
+    end
+  end
+
+  def load_artists(file)
+    artist_data = FileIO.load_artists(file)
+    artist_data.each do |artist_hash|
+      add_artist(artist_hash)
     end
   end
 end

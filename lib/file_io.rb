@@ -14,7 +14,6 @@ class FileIO
       }
       artists << artist_hash
     end
-    binding.pry
     return artists
   end
 
